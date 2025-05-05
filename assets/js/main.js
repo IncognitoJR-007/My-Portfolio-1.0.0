@@ -1,7 +1,3 @@
-/**
-
-*/
-
 (function() {
   "use strict";
 
@@ -222,4 +218,34 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+  /**
+   * Contact Form Submission
+   */
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(form);
+        
+        fetch(form.action, {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+          console.log('Success:', data);
+          form.reset();
+          document.querySelector('.sent-message').style.display = 'block';
+          document.querySelector('.error-message').style.display = 'none';
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          document.querySelector('.error-message').style.display = 'block';
+          document.querySelector('.sent-message').style.display = 'none';
+        });
+      });
+    }
+  });
 })();
