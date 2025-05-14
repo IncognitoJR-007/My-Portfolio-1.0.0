@@ -248,4 +248,22 @@
       });
     }
   });
+
+  // Additional CV download functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const downloadButton = document.getElementById('downloadCV');
+    if (downloadButton) {
+      downloadButton.addEventListener('click', function() {
+        // You can replace this URL with your actual CV file path
+        const cvUrl = 'assets/documents/Rahul_Jebin_Raju_Resume.pdf';
+        const link = document.createElement('a');
+        link.href = cvUrl;
+        link.download = 'Rahul_Jebin_Raju_Resume.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+    }
+  });
+
 })();
